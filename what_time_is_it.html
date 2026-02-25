@@ -10,9 +10,12 @@
 
 
         <script>
+            // Connects to p element on html
             let timeElement = document.querySelector('#time')
 
-            setInterval(function () {
+            // Changed function into =>
+            // Setup shows current time and date in current time zone
+            setInterval( () => {
                 let date = Date()
                 timeElement.innerHTML = date
             }, 1000) // Wed Feb 25 2026 15:02;04 GMT-0600 (Centeral Standard Time)
