@@ -55,7 +55,6 @@ function displayWeatherTable(weatherJson) {
 
         // Add weather description - detailed forcast
         let detailedForcast = forcastPeriodData.detailedForecast
-        //console.log(detailedForcast)
         let detailedForcastTableData = document.createElement('td')
         detailedForcastTableData.innerHTML = detailedForcast
         tableRow.appendChild(detailedForcastTableData)
