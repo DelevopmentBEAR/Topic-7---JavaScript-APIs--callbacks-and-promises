@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Supply Checker</title>
+</head>
+<body>
+    <h1>Blood Supply Checker</h1>
+
+    <div>
+        <label for="abo-group">ABO Blood Group</label>
+        <select id="abo-group">
+            <option value="a">A</option>
+            <option value="b">B</option>
+            <option value="ab">AB</option>
+            <option value="o">O</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="rh-group">Rh Group</label>
+        <select id="rh-group">
+            <!-- value is needed because url needs lowercase, also converts better to other languages -->
+            <option value="positive">Positive</option>
+            <option value="negative">Negative</option>
+        </select>
+    </div>
+    
+    <div>
+        <button id="request-blood-button">Check blood supply</button>
+    </div>
+
+<script>
+    // url = 'https://blood-group-api.wl.r.appspot.com/api/blood_units_by_group?group=Anegative'
+
+    // When the button is clicked
+    // 1. Read user's selections for ABO and Rh types
+    // 2. Form the correct URL string
+    // 3. Make a request
+    // 4. Process the resounse - either display data to user OR display error message
+
+    // Connects back to elements in html body
+    let requestBloodSupplyButton = document.querySelector('#request-blood-button')
+    let aboSelect = document.querySelector('#abo-group')
+    let rhSelect = document.querySelector('#rh-group')
+
+    // Event listener for Blood Supply Check button
+    requestBloodSupplyButton.addEventListener('click', function() {
+        // Read data from select elements
+        let aboGroup = aboSelect.value
+        let rhGroup = rhSelect.value
+        console.log(aboGroup + rhGroup) // a + negative = anegative
+    })
+
+</script>
+</body> 
+</html>
