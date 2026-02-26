@@ -11,10 +11,10 @@
     <div>
         <label for="abo-group">ABO Blood Group</label>
         <select id="abo-group">
-            <option value="a">A</option>
-            <option value="b">B</option>
-            <option value="ab">AB</option>
-            <option value="o">O</option>
+            <option>A</option>
+            <option>B</option>
+            <option>AB</option>
+            <option>O</option>
         </select>
     </div>
 
@@ -32,8 +32,6 @@
     </div>
 
 <script>
-    // url = 'https://blood-group-api.wl.r.appspot.com/api/blood_units_by_group?group=Anegative'
-
     // When the button is clicked
     // 1. Read user's selections for ABO and Rh types
     // 2. Form the correct URL string
@@ -50,7 +48,35 @@
         // Read data from select elements
         let aboGroup = aboSelect.value
         let rhGroup = rhSelect.value
-        console.log(aboGroup + rhGroup) // a + negative = anegative
+
+        let url = 'https://blood-group-api.wl.r.appspot.com/api/blood_units_by_group?group=' + aboGroup + rhGroup
+        
+        //console.log(url) // for checking everything thus far is working the way we want it to.
+
+        // What does fetch return? A Promise.
+        // Promises can be fulfilled or resolved - the operation was completed. Then we can process that data.
+        // Or they can be rejected - there was an error. 
+        // We have to catch the error (the error is 'thrown').
+        fetch(url).then(function(response) {
+            // 'response' is the whole response from the server.
+            // Which hopefully includes JSON data.
+            // The function here is called when data is available
+            // from the server. The then function calls
+            // the callback function with all the data from the 
+            // server as the argument.
+
+            // What about the JSON?? use .json() to extract - returns a promise
+            // Extract json then process it.
+            let jsonPromise = response.json()
+                return jsonPromise //Where does this go?
+            // If I return a promise from a then callback function
+            // the resolution from that promise can be used in a chained on 'then'
+        }).then(function(jsonData) {
+            console.log(jsonData)
+        })
+        
+
+
     })
 
 </script>
