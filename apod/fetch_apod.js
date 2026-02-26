@@ -10,7 +10,7 @@ let apodApiUrl = 'https://api.nasa.gov/planetary/apod?api_key=4mUBxlioTv7duJ8ef3
 // But, it could be quite slow for a large JSON response.
 fetch(apodApiUrl) // Fetch returns a Promise. The promise will Resolve = be successful (then) or be rejected = fail/error (catch)
     .then( response => { // Response is the raw response data - it's bytes that can be found turn into JSON (hopefully)
-        return response.json // Extract JSON from the response
+        return response.json() // Extract JSON from the response
     }) 
     // Below is where we get our specific data to return to html
     .then( data => {
@@ -30,15 +30,16 @@ fetch(apodApiUrl) // Fetch returns a Promise. The promise will Resolve = be succ
 
         // If media type = image,
         if (mediaType === 'image'){
+            
             // Connect to the image url and send back to html
-            apodImage.src = url
+            apodImage.src = data.url;
             // Unhide image on html
             apodImage.style.display = 'block'
         }
         // Else if media type = video
         else if (mediaType === 'video'){
             // Connect to the video url and send back to html
-            apodVideo.src = url
+            apodVideo.src = data.url
             // Unhide video on html 
             apodVideo.style.display = 'block'
         }
