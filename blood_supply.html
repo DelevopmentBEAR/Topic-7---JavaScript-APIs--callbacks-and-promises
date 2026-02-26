@@ -10,6 +10,7 @@
 
     <div>
         <label for="abo-group">ABO Blood Group</label>
+        <!-- Note to self: ABO Group does NOT need values for now, needs to say uppercase. -->
         <select id="abo-group">
             <option>A</option>
             <option>B</option>
@@ -31,6 +32,10 @@
         <button id="request-blood-button">Check blood supply</button>
     </div>
 
+    <div>
+        <p id="results"></p>
+    </div>
+
 <script>
     // When the button is clicked
     // 1. Read user's selections for ABO and Rh types
@@ -42,6 +47,8 @@
     let requestBloodSupplyButton = document.querySelector('#request-blood-button')
     let aboSelect = document.querySelector('#abo-group')
     let rhSelect = document.querySelector('#rh-group')
+
+    let resultMessageElement = document.querySelector('#results')
 
     // Event listener for Blood Supply Check button
     requestBloodSupplyButton.addEventListener('click', function() {
@@ -72,7 +79,15 @@
             // If I return a promise from a then callback function
             // the resolution from that promise can be used in a chained on 'then'
         }).then(function(jsonData) {
-            console.log(jsonData)
+            //console.log(jsonData)
+            // Connects to the specific data we need.
+            let unitsAvailable = jsonData.blood_availability.units_available
+            //console.log(unitsAvailable)
+            // Template for message results to go into p element in html
+            resultMessageElement.innerHTML = 'There are ' + unitsAvailable + ' units available of blood type ' + aboGroup + ' ' + rhGroup + '.'
+        }).catch( error => {
+            // Error message for p element in html in case something goes wrong.
+            resultMessageElement.innerHTML = 'Sorry, there was an error fetching the blood supply data.'
         })
         
 
