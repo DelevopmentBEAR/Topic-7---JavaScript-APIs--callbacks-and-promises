@@ -58,7 +58,18 @@ function displayWeatherTable(weatherJson) {
         let detailedForcastTableData = document.createElement('td')
         detailedForcastTableData.innerHTML = detailedForcast
         tableRow.appendChild(detailedForcastTableData)
-        
+
+        // Get the wind speed and wind direction from the API response.  
+        // Create a new string from these two data items. 
+        // The wind speed will be a number and unit like "5 mph" or "15 mph. 
+        // The wind direction will be a compass direction like "NE" or "SSW". 
+        // Combine these to make a new string like "5 mph, SSW"
+        // Create and add a new td element to each table row with the inner text set to the wind speed and direction string. 
+        let windSpeed = forcastPeriodData.windSpeed
+        let windDirection = forcastPeriodData.windDirection
+        let windTableData = document.createElement('td')
+        windTableData.innerHTML = windSpeed + ', ' + windDirection
+        tableRow.appendChild(windTableData)
 
         // Add table row (with all of the td elenemts) to the table
         // Fianlly places everything together in html
